@@ -1,0 +1,46 @@
+-- NOTE: "movie" is PARENT with 1 to many CHILD "reviews" records
+
+-- in Terminal
+
+-- create database user (as superuser):
+createuser -s flicklog
+
+-- create database:
+createdb -U flicklog flicklog
+
+-- create test database:
+createdb  -U flicklog flicklog-test
+
+-- create tables:
+-- before running migrate make sure src/config.js and .env have database info
+cd /Library/WebServer/Documents/GitHub/Bloc/flicklog-api
+
+-- make .env NODE_ENV = production to migrate non-test database
+-- make .env NODE_ENV = test to migrate test database (or just npm run migrate:test )
+
+npm run migrate
+
+// ****************************************
+Create development and test database tables:
+
+    npm run migrate
+    npm run migrate:test
+
+To delete the tables in the databases:
+
+    npm run migrate -- 0
+    npm run migrate:test -- 0
+// ****************************************
+
+
+-- seed tables:
+psql -U flicklog -d flicklog -f ./seeds/seed.flicklog_tables.sql
+
+
+-- seed test tables:
+psql -U flicklog -d flicklog-test -f ./seeds/seed.flicklog_tables.sql
+
+
+-- change .env NODE_ENV to "test"
+
+-- switch CLIENT src/config.js to use PostgreSQL databases instead of json.db
