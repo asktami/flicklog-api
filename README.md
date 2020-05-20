@@ -90,24 +90,24 @@ psql -U flicklog -d flicklog-test -a -f seeds/trunc.flicklog_tables.sql
 
 ## Endpoints
 
-| Endpoint                    | HTTP Method | CRUD Method | Result                                           |
-| --------------------------- | ----------- | ----------- | ------------------------------------------------ |
-| movies                      | GET         | READ        | get all movies                                   |
-| movies/search               | GET         | READ        | get all movies matching query                    |
-| movies/:id                  | GET         | READ        | get single movie                                 |
-| movies/:id/reviews          | GET         | READ        | get all reviews for a movie                      |
-| movies/:id/add-review       | <link>      | -           | must login before adding a review                |
-| movies/:id/add-to-watchlist | <link>      | -           | must login before adding movie to watchlist      |
-| movies/:id/reviews          | POST        | CREATE      | add new review for a movie                       |
-| reviews                     | GET         | READ        | get all movie reviews for the logged in user     |
-| reviews/:id                 | GET         | READ        | get single movie review                          |
-| reviews/:id                 | PATCH       | UPDATE      | update single movie review                       |
-| reviews/:id                 | DELETE      | DELETE      | delete single movie review                       |
-| watchlist                   | GET         | READ        | get all watchlist records for the logged in user |
-| watchlist/:movie_id         | POST        | CREATE      | add new movie to user's watchlist                |
-| watchlist/:movie_id         | DELETE      | DELETE      | delete movie from a user's watchlist             |
-| users                       | GET         | READ        | get logged in user                               |
-| users                       | POST        | CREATE      | register new user                                |
+| Endpoint                    | HTTP Method | CRUD Method | Result                                                    |
+| --------------------------- | ----------- | ----------- | --------------------------------------------------------- |
+| movies                      | GET         | READ        | get all movies                                            |
+| movies/search               | GET         | READ        | get all movies matching query                             |
+| movies/:id                  | GET         | READ        | get single movie                                          |
+| movies/:id/reviews          | GET         | READ        | get all reviews for a movie                               |
+| movies/:id/add-review       | -link-      | -           | must login before adding a review                         |
+| movies/:id/add-to-watchlist | -link-      | -           | must login before adding movie to watchlist               |
+| movies/:id/reviews          | POST        | CREATE      | PRIVATE: add new review for a movie                       |
+| reviews                     | GET         | READ        | PRIVATE: get all movie reviews for the logged in user     |
+| reviews/:id                 | GET         | READ        | PRIVATE: get single movie review                          |
+| reviews/:id                 | PATCH       | UPDATE      | PRIVATE: update single movie review                       |
+| reviews/:id                 | DELETE      | DELETE      | PRIVATE: delete single movie review                       |
+| watchlist                   | GET         | READ        | PRIVATE: get all watchlist records for the logged in user |
+| watchlist/:movie_id         | POST        | CREATE      | PRIVATE: add new movie to user's watchlist                |
+| watchlist/:movie_id         | DELETE      | DELETE      | PRIVATE: delete movie from a user's watchlist             |
+| users                       | GET         | READ        | PRIVATE: get logged in user                               |
+| users                       | POST        | CREATE      | register new user                                         |
 
 ## Scripts
 
@@ -120,4 +120,4 @@ psql -U flicklog -d flicklog-test -a -f seeds/trunc.flicklog_tables.sql
 
 This project was bootstrapped with [Express Boilerplate with Routes, Winston and UUID](https://github.com/asktami/express-boilerplate-routes).
 
-See [https://github.com/asktami/bookmarks-server](https://github.com/asktami/bookmarks-server) for info on how I created my Express APIs.
+See [https://github.com/asktami/bookmarks-server](https://github.com/asktami/bookmarks-server) for info on how I create my Express APIs.
