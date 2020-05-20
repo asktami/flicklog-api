@@ -1,6 +1,6 @@
 # flicklog-api
 
-An Express server app with CRUD endpoints that gets data from a PostgreSQL datasource.
+An Express server app with CRUD endpoints that get data from a PostgreSQL datasource.
 
 Works with [https://github.com/asktami/flicklog-app](https://github.com/asktami/flicklog-app).
 
@@ -8,7 +8,9 @@ Works with [https://github.com/asktami/flicklog-app](https://github.com/asktami/
 
 - a review is linked to both a _user_ record and a _movie_ record
 
-- SQL migration scripts to create the flicklog database with tables for movies, watchlist, reviews, and users including relationships and CASCADES
+- movies come from [https://www.themoviedb.org/](https://www.themoviedb.org/)
+
+- SQL migration scripts to create the flicklog database with tables for watchlist, reviews, and users including relationships and CASCADES
 
 - service objects for all tables
 
@@ -54,7 +56,7 @@ For tests involving time to run properly, your Postgres database must be configu
 
 1. Locate the `postgresql.conf` file for your Postgres installation.
    - OS X, Homebrew: `/usr/local/var/postgres/postgresql.conf`
-2. Unreview the `timezone` line and set it to `UTC` as follows:
+2. Uncomment the `timezone` line and set it to `UTC` as follows:
 
 ```
 # - Locale and Formatting -
@@ -88,19 +90,24 @@ psql -U flicklog -d flicklog-test -a -f seeds/trunc.flicklog_tables.sql
 
 ## Endpoints
 
-| Endpoint               | HTTP Method | CRUD Method | Result                                          |
-| ---------------------- | ----------- | ----------- | ----------------------------------------------- |
-| movies                 | GET         | READ        | get all movies                                  |
-| movies/:id             | GET         | READ        | get single movie                                |
-| movies/:id/reviews     | GET         | READ        | get all reviews for a movie                     |
-| movies/:id/reviews     | POST        | CREATE      | add new review for a movie                      |
-| reviews/:id            | GET         | READ        | get single review                               |
-| reviews/:id            | PATCH       | UPDATE      | update single review                            |
-| reviews/:id            | DELETE      | DELETE      | delete single review                            |
-| watchlist              | GET         | READ        | get all scehdule records for the logged in user |
-| watchlist/:movieId     | POST        | CREATE      | add new movie to user's watchlist               |
-| watchlist/:watchlistId | DELETE      | DELETE      | delete watchlist record                         |
-| users                  | POST        | CREATE      | add new user                                    |
+| Endpoint                    | HTTP Method | CRUD Method | Result                                           |
+| --------------------------- | ----------- | ----------- | ------------------------------------------------ |
+| movies                      | GET         | READ        | get all movies                                   |
+| movies/search               | GET         | READ        | get all movies matching query                    |
+| movies/:id                  | GET         | READ        | get single movie                                 |
+| movies/:id/reviews          | GET         | READ        | get all reviews for a movie                      |
+| movies/:id/add-review       | <link>      | -           | must login before adding a review                |
+| movies/:id/add-to-watchlist | <link>      | -           | must login before adding movie to watchlist      |
+| movies/:id/reviews          | POST        | CREATE      | add new review for a movie                       |
+| reviews                     | GET         | READ        | get all movie reviews for the logged in user     |
+| reviews/:id                 | GET         | READ        | get single movie review                          |
+| reviews/:id                 | PATCH       | UPDATE      | update single movie review                       |
+| reviews/:id                 | DELETE      | DELETE      | delete single movie review                       |
+| watchlist                   | GET         | READ        | get all watchlist records for the logged in user |
+| watchlist/:movie_id         | POST        | CREATE      | add new movie to user's watchlist                |
+| watchlist/:movie_id         | DELETE      | DELETE      | delete movie from a user's watchlist             |
+| users                       | GET         | READ        | get logged in user                               |
+| users                       | POST        | CREATE      | register new user                                |
 
 ## Scripts
 
