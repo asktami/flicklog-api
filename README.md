@@ -106,7 +106,7 @@ psql -U flicklog -d flicklog-test -a -f seeds/trunc.flicklog_tables.sql
 | watchlist                   | GET         | READ        | PRIVATE: get all watchlist records for the logged in user |
 | watchlist/:movie_id         | POST        | CREATE      | PRIVATE: add new movie to user's watchlist                |
 | watchlist/:movie_id         | DELETE      | DELETE      | PRIVATE: delete movie from a user's watchlist             |
-| users                       | GET         | READ        | PRIVATE: get logged in user                               |
+| users                       | GET         | READ        | get logged in user                                        |
 | users                       | POST        | CREATE      | register new user                                         |
 
 ## Scripts
