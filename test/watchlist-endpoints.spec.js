@@ -53,34 +53,33 @@ describe('Watchlist Endpoints', function() {
 	// POST WATCHLIST ITEM ************************************
 	describe(`POST /api/watchlist/:movieId/`, () => {
 		context('Given there are no watchlists in the database', () => {
-			beforeEach('insert watchlists', () =>
-				helpers.seedTables(db, testUsers, testReviews)
-			);
+			beforeEach('insert watchlists', () => helpers.seedTables(db, testUsers));
 
 			it(`creates a watchlist record, responding with 201 and the new watchlist record`, () => {
 				let movie_id = testMovies[0].id;
 
-				const newWatchlistItem = {
-					movie_id: movie_id,
-					poster_path: '/vfrQk5IPloGg1v9Rzbh2Eg3VGyM.jpg',
-					backdrop_path: '/AmR3JG1VQVxU8TfAvljUhfSFUOx.jpg',
-					title: 'Alien',
-					original_title: 'Alien',
-					release_date: '1979-05-25',
-					overview:
-						'During its return to the earth, commercial spaceship Nostromo intercepts a distress signal from a distant planet. When a three-member team of the crew discovers a chamber containing thousands of eggs on the planet, a creature inside one of the eggs attacks an explorer. The entire crew is unaware of the impending nightmare set to descend upon them when the alien parasite planted inside its unfortunate host is birthed.',
-					vote_average: 8.1,
-					vote_count: 5694,
+				console.log('testMovies = ', JSON.stringify(testMovies));
+
+				const newWatchListItem = {
+					movie_id,
+					poster_path: 'poster_path',
+					backdrop_path: 'backdrop_path',
+					title: 'title',
+					original_title: 'original_title',
+					release_date: '1979-12-20',
+					overview: 'overview',
+					vote_average: 3,
+					vote_count: 100,
 				};
 
 				return supertest(app)
 					.post(`/api/watchlist/${movie_id}`)
 					.set('Authorization', helpers.makeAuthHeader(testUsers[0]))
-					.send(newWatchlistItem)
+					.send(newWatchListItem)
 					.expect(201)
 					.expect((res) => {
-						expect(res.body).to.have.property('id');
-						expect(res.body.movie_id).to.eql(newWatchlistItem.movie_id);
+						expect(res.body).to.have.property('movie_id');
+						expect(res.body.movie_id).to.eql(newWatchListItem.movie_id);
 						expect(res.headers.location).to.eql(`/api/watchlist/${movie_id}`);
 					});
 			});

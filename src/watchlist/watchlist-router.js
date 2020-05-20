@@ -75,8 +75,6 @@ watchlistRouter
 			.catch(next);
 	})
 	.post(requireAuth, jsonBodyParser, (req, res, next) => {
-		// const { id } = req.params;
-		// const newWatchlistItem = { movie_id: id };
 		const knexInstance = req.app.get('db');
 
 		for (const field of ['id']) {
@@ -94,7 +92,7 @@ watchlistRouter
 		}
 
 		const {
-			id,
+			movie_id,
 			poster_path,
 			backdrop_path,
 			title,
@@ -106,32 +104,28 @@ watchlistRouter
 		} = req.body;
 
 		const newWatchListItem = {
-			movie_id: id,
+			movie_id,
 			poster_path,
 			backdrop_path,
 			title,
 			original_title,
 			release_date,
 			overview,
-			vote_average,
+			vote_average: parseFloat(vote_average),
 			vote_count,
 		};
-
-		// ------------------------
-		console.log('---- API newWatchListItem req.params.id = ', req.params.id);
-
-		console.log('---- API newWatchListItem req.body = ', req.body);
-
-		console.log(
-			'---- API newWatchListItem = ',
-			JSON.stringify(newWatchListItem)
-		);
-		// ------------------------
 
 		// from jwt-auth
 		// req.user is set in middleware/basic-auth
 		// this is the login user id
 		newWatchListItem.user_id = req.user.id;
+
+		// ------------------------
+		console.log(
+			'---- **** API newWatchListItem = ',
+			JSON.stringify(newWatchListItem)
+		);
+		// ------------------------
 
 		let loginUserId = req.user.id;
 
@@ -140,9 +134,10 @@ watchlistRouter
 				knexInstance,
 				newWatchListItem,
 				loginUserId,
-				id
+				movie_id
 			)
 			.then((watchlist) => {
+				console.log('NEW WATCHLIST RESULT = ', watchlist);
 				logger.info({
 					message: `movie_id ${watchlist.movie_id} added to watchlist.`,
 					request: `${req.originalUrl}`,

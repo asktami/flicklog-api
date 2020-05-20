@@ -103,11 +103,27 @@ function makeWatchlistArray(users, movies) {
 			id: 1,
 			movie_id: movies[0].id,
 			user_id: users[0].id,
+			poster_path: 'poster_path',
+			backdrop_path: 'backdrop_path',
+			title: 'title',
+			original_title: 'original_title',
+			release_date: '1979-12-20T00:00:00.000Z',
+			overview: 'overview',
+			vote_average: '2',
+			vote_count: 100,
 		},
 		{
 			id: 2,
 			movie_id: movies[1].id,
 			user_id: users[0].id,
+			poster_path: 'poster_path',
+			backdrop_path: 'backdrop_path',
+			title: 'title',
+			original_title: 'original_title',
+			release_date: '1979-12-20T00:00:00.000Z',
+			overview: 'overview',
+			vote_average: '3',
+			vote_count: 100,
 		},
 	];
 }
@@ -126,10 +142,18 @@ function makeMoviesArray() {
 // watchlist
 function makeExpectedWatchlist(watchlist) {
 	return {
-		id: watchlist.id,
 		watchlist_id: watchlist.id,
-		user_id: watchlist.user_id,
+		id: watchlist.movie_id,
 		movie_id: watchlist.movie_id,
+		user_id: watchlist.user_id,
+		poster_path: watchlist.poster_path,
+		backdrop_path: watchlist.backdrop_path,
+		title: watchlist.title,
+		original_title: watchlist.original_title,
+		release_date: watchlist.release_date,
+		overview: watchlist.overview,
+		vote_average: watchlist.vote_average,
+		vote_count: watchlist.vote_count,
 	};
 }
 

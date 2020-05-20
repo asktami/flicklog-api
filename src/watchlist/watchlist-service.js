@@ -22,7 +22,7 @@ const watchlistService = {
 			.join('users', 'users.id', 'watchlist.user_id')
 			.where('watchlist.user_id', loginUserId);
 	},
-	insertWatchlistIfNotExists(knex, newWatchlistItem, loginUserId, movie_id) {
+	insertWatchlistIfNotExists(knex, newWatchListItem, loginUserId, movie_id) {
 		return knex(table)
 			.select('*')
 			.where({ movie_id: movie_id, user_id: loginUserId })
@@ -31,17 +31,17 @@ const watchlistService = {
 					// no matching records found
 					// so ok to add new watchlist record
 					// this prevents a duplicate watchlist record being created because of a page render timing issue
-					//return knex(table).insert(newWatchlistItem);
-					return watchlistService.insertWatchlist(knex, newWatchlistItem);
+					//return knex(table).insert(newWatchListItem);
+					return watchlistService.insertWatchlist(knex, newWatchListItem);
 				} else {
 					// return or throw - existing record found
 					return rows[0];
 				}
 			});
 	},
-	insertWatchlist(knex, newWatchlistItem) {
+	insertWatchlist(knex, newWatchListItem) {
 		return knex
-			.insert(newWatchlistItem)
+			.insert(newWatchListItem)
 			.into(table)
 			.returning('*')
 			.then((rows) => {
