@@ -19,7 +19,7 @@ console.log('----------------');
 const qrX = db
 	.select('*')
 	.from(process.env.TEST_TABLE)
-	.where('movie_id', 545609)
+	.where('movie_id', 348)
 	.then((result) => {
 		console.log('__________________qryX = ', result);
 	});

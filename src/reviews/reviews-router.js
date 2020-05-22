@@ -92,11 +92,6 @@ reviewRouter
 		// this is the login user_id used to post reviews
 		newReview.user_id = req.user.id; // from jwt-auth
 
-		// ------------------------
-
-		console.log('----- API newReview = ', JSON.stringify(newReview));
-		// ------------------------
-
 		reviewService
 			.insertReview(knexInstance, newReview)
 			.then((review) => {

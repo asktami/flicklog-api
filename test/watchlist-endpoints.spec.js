@@ -58,8 +58,6 @@ describe('Watchlist Endpoints', function() {
 			it(`creates a watchlist record, responding with 201 and the new watchlist record`, () => {
 				let movie_id = testMovies[0].id;
 
-				console.log('testMovies = ', JSON.stringify(testMovies));
-
 				const newWatchListItem = {
 					movie_id,
 					poster_path: 'poster_path',

@@ -54,9 +54,6 @@ watchlistRouter
 		// delete watchlist record for loginUserId + movie_id
 		const loginUserId = req.user.id; // from jwt-auth
 
-		console.log('GOT HERE watchlistRouter delete, id = ', id);
-		console.log('GOT HERE watchlistRouter loginUserId = ', loginUserId);
-
 		watchlistService
 			.deleteWatchlistItem(knexInstance, id, loginUserId)
 			.then((numRowsAffected) => {
@@ -120,13 +117,6 @@ watchlistRouter
 		// this is the login user id
 		newWatchListItem.user_id = req.user.id;
 
-		// ------------------------
-		console.log(
-			'---- **** API newWatchListItem = ',
-			JSON.stringify(newWatchListItem)
-		);
-		// ------------------------
-
 		let loginUserId = req.user.id;
 
 		watchlistService
@@ -137,7 +127,6 @@ watchlistRouter
 				movie_id
 			)
 			.then((watchlist) => {
-				console.log('NEW WATCHLIST RESULT = ', watchlist);
 				logger.info({
 					message: `movie_id ${watchlist.movie_id} added to watchlist.`,
 					request: `${req.originalUrl}`,
