@@ -4,9 +4,9 @@ An Express server app with CRUD endpoints that get data from a PostgreSQL dataso
 
 Works with [https://github.com/asktami/flicklog-app](https://github.com/asktami/flicklog-app).
 
-- a watchlist is linked to both a _user_ record and a _movie_ record
+- a watchlist record is linked to both a _user_ record and a _movie_ record
 
-- a review is linked to both a _user_ record and a _movie_ record
+- a review record is linked to both a _user_ record and a _movie_ record
 
 - movies come from [https://www.themoviedb.org/](https://www.themoviedb.org/)
 
@@ -27,7 +27,6 @@ Works with [https://github.com/asktami/flicklog-app](https://github.com/asktami/
 1. Clone this repo
 2. In Terminal, change to the directory on your computer that contains this repo
 3. Install dependencies: `npm install`
-   `(to use node-fetch: npm i node-fetch --save)`
 
 4. Create the database user (as a superuser): `createuser -s flicklog`
 
