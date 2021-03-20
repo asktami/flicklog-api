@@ -8,7 +8,7 @@
 module.exports = {
 	PORT: process.env.PORT || 8000,
 	NODE_ENV: process.env.NODE_ENV || 'development',
-	API_TOKEN: process.env.API_TOKEN || 'my-dummy-api-token',
+	AUTH_TOKEN: process.env.AUTH_TOKEN || 'my-dummy-auth-token',
 	TEST_DATABASE_URL:
 		process.env.TEST_DATABASE_URL ||
 		'postgresql://flicklog@localhost/flicklog-test',
@@ -17,5 +17,5 @@ module.exports = {
 	JWT_SECRET: process.env.JWT_SECRET || 'my-JWT_EXPIRY-secret',
 	JWT_EXPIRY: process.env.JWT_EXPIRY || '3h',
 	EXTERNAL_ENDPOINT: `https://api.themoviedb.org/3`,
-	API_KEY: process.env.REACT_APP_API_KEY,
+	API_KEY: process.env.API_KEY,
 };

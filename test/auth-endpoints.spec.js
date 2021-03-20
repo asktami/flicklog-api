@@ -14,7 +14,7 @@ describe('Auth Endpoints', function() {
 	before('make knex instance', () => {
 		db = knex({
 			client: 'pg',
-			connection: process.env.TEST_DATABASE_URL
+			connection: process.env.TEST_DATABASE_URL,
 		});
 		app.set('db', db);
 	});
@@ -29,10 +29,10 @@ describe('Auth Endpoints', function() {
 
 		const requiredFields = ['username', 'password'];
 
-		requiredFields.forEach(field => {
+		requiredFields.forEach((field) => {
 			const loginAttemptBody = {
 				username: testUser.username,
-				password: testUser.password
+				password: testUser.password,
 			};
 
 			it(`responds with 400 required error when '${field}' is missing`, () => {
@@ -42,7 +42,7 @@ describe('Auth Endpoints', function() {
 					.post('/api/auth/login')
 					.send(loginAttemptBody)
 					.expect(400, {
-						message: `Missing '${field}' in request body`
+						message: `Missing '${field}' in request body`,
 					});
 			});
 		});
@@ -58,7 +58,7 @@ describe('Auth Endpoints', function() {
 		it(`responds 400 'invalid username or password' when bad password`, () => {
 			const userInvalidPass = {
 				username: testUser.username,
-				password: 'incorrect'
+				password: 'incorrect',
 			};
 			return supertest(app)
 				.post('/api/auth/login')
@@ -69,7 +69,7 @@ describe('Auth Endpoints', function() {
 		it(`responds 200 and JWT auth token using secret when valid credentials`, () => {
 			const userValidCreds = {
 				username: testUser.username,
-				password: testUser.password
+				password: testUser.password,
 			};
 
 			const expectedToken = jwt.sign(
@@ -78,7 +78,7 @@ describe('Auth Endpoints', function() {
 				{
 					subject: testUser.username,
 					expiresIn: config.JWT_EXPIRY,
-					algorithm: 'HS256'
+					algorithm: 'HS256',
 				}
 			);
 			return supertest(app)
@@ -86,7 +86,7 @@ describe('Auth Endpoints', function() {
 				.send(userValidCreds)
 				.expect(200, {
 					user_id: testUser.id,
-					authToken: expectedToken
+					authToken: expectedToken,
 				});
 		});
 	});
@@ -101,14 +101,14 @@ describe('Auth Endpoints', function() {
 				{
 					subject: testUser.username,
 					expiresIn: config.JWT_EXPIRY,
-					algorithm: 'HS256'
+					algorithm: 'HS256',
 				}
 			);
 			return supertest(app)
 				.post('/api/auth/refresh')
 				.set('Authorization', helpers.makeAuthHeader(testUser))
 				.expect(200, {
-					authToken: expectedToken
+					authToken: expectedToken,
 				});
 		});
 	});

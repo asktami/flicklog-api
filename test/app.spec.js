@@ -13,7 +13,7 @@ describe('App Server endpoints - Authorized requests', () => {
 	it('GET / responds with 200 containing "Hello, world!"', () => {
 		return supertest(app)
 			.get('/')
-			.set('Authorization', `Bearer ${process.env.API_TOKEN}`)
+			.set('Authorization', `Bearer ${process.env.AUTH_TOKEN}`)
 			.expect(200, 'Hello, world!');
 	});
 });
