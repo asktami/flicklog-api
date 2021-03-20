@@ -37,8 +37,11 @@ Works with [https://github.com/asktami/flicklog-app](https://github.com/asktami/
 
 6. Environment:
 
-   - Prepare environment file: `cp example.env .env`
-   - Replace values in `.env` with your custom values.
+   - Prepare the environment file: `cp example.env .env`
+   - Replace values in `.env` with your custom values
+   - The `AUTH_TOKEN` is used for the App endpoint authorized requests
+   - Get your `AUTH_TOKEN` from (https://www.uuidgenerator.net/)[https://www.uuidgenerator.net/]
+   - The `API_TOKEN` is your (TheMovieDb.org)[TheMovieDb.org] API Key
 
 7. Create development and test database tables:
 
