@@ -5,7 +5,7 @@ const config = require('../config');
 const AuthService = {
 	getUserWithUserName(db, username) {
 		return db('users')
-			.where({ username })
+			.where({ username, app: 'flicklog' })
 			.first();
 	},
 

@@ -33,7 +33,8 @@ userRouter.post('/', jsonBodyParser, (req, res, next) => {
 					username,
 					password: hashedPassword,
 					fullname,
-					date_created: 'now()'
+					date_created: 'now()',
+					app: 'flicklog'
 				};
 
 				return userService.insertUser(req.app.get('db'), newUser).then(user => {

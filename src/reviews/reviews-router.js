@@ -59,6 +59,7 @@ reviewRouter
 			overview,
 			vote_average,
 			vote_count,
+			app: 'flicklog',
 		};
 
 		const knexInstance = req.app.get('db');

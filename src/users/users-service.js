@@ -6,7 +6,7 @@ const REGEX_UPPER_LOWER_NUMBER_SPECIAL = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*
 const userService = {
 	hasUserWithUserName(db, username) {
 		return db('users')
-			.where({ username })
+			.where({ username, app: 'flicklog' })
 			.first()
 			.then(user => !!user);
 	},

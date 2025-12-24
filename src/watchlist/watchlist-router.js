@@ -110,6 +110,7 @@ watchlistRouter
 			overview,
 			vote_average: parseFloat(vote_average),
 			vote_count,
+			app: 'flicklog',
 		};
 
 		// from jwt-auth

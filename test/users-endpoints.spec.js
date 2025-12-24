@@ -9,10 +9,21 @@ describe('Users Endpoints', function() {
 	const { testUsers } = helpers.makeFixtures();
 	const testUser = testUsers[0];
 
-	before('make knex instance', () => {
+	before('make knex instance', async () => {
 		db = knex({
 			client: 'pg',
-			connection: process.env.TEST_DATABASE_URL
+			connection: process.env.TEST_DATABASE_URL,
+			pool: {
+				afterCreate: (conn, done) => {
+					conn.query("SET timezone = 'UTC'", (err) => {
+						if (err) {
+							done(err);
+						} else {
+							done(null, conn);
+						}
+					});
+				}
+			}
 		});
 		app.set('db', db);
 	});

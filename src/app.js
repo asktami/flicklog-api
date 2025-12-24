@@ -41,7 +41,6 @@ app.use((req, res, next) => {
 });
 
 app.use(helmet());
-app.use(helmet.hidePoweredBy());
 
 // DO NOT USE validate bearer token b/c do in protected routes with jwt!!!
 // app.use(validateBearerToken);
